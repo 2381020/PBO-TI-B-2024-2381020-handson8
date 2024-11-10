@@ -1,18 +1,21 @@
 import config.Database;
-import entities.TodoList;
 import repositories.TodoListRepository;
-import repositories.TodoListRepositoryImpl;
+import repositories.TodoListRepositoryDbImpl;
 import services.TodoListService;
+import services.TodoListServiceImpl;
+import views.TodoListTerminalViewImpl;
 import views.TodoListView;
 
 public class Main {
     public static void main(String[] args) {
-        Database database = new Database("my_db","root", "","localhost","3306");
+        Database database = new Database("my_db", "root", "", "localhost", "3306");
         database.setup();
 
         TodoListRepository todoListRepository = new TodoListRepositoryDbImpl(database);
-        TodoListService todoListService =;
-        TodoListView todoListView =;
+        TodoListService todoListService = new TodoListServiceImpl(todoListRepository);
+        TodoListView todoListView = new TodoListTerminalViewImpl(todoListService);
+        todoListView.run();
+
 
     }
 }

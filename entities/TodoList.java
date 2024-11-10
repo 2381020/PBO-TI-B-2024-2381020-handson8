@@ -22,4 +22,7 @@ public class TodoList {
     public void setId(final Integer id) {
         this.id = id;
     }
+
+    public void add(TodoList todoList) {
+    }
 }
